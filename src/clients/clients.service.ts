@@ -34,9 +34,9 @@ export class ClientsService {
       .take(itemsPerPage)
       .skip((page - 1) * itemsPerPage);
 
-    if (isSelected) {
+    if (typeof isSelected === 'boolean') {
       queryBuilder.where('is_Selected = :isSelected', {
-        isSelected: `%${isSelected}%`,
+        isSelected: isSelected,
       });
     }
 
