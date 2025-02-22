@@ -10,7 +10,7 @@ import {
 export class ClientEntity {
   @PrimaryGeneratedColumn({
     primaryKeyConstraintName: 'pk_client_id',
-    name: 'client_ id',
+    name: 'client_id',
   })
   id: number;
 
@@ -18,23 +18,30 @@ export class ClientEntity {
     type: 'varchar',
     name: 'name',
     length: 256,
-    unique: true,
   })
   name: string;
 
   @Column({
-    type: 'decimal',
+    type: 'numeric',
     name: 'salary_amount',
     precision: 9,
     scale: 2,
+    transformer: {
+      to: (value: number) => value,
+      from: (value: string) => parseFloat(value),
+    },
   })
   salary: number;
 
   @Column({
-    type: 'decimal',
+    type: 'numeric',
     name: 'company_revenue_amount',
     precision: 11,
     scale: 2,
+    transformer: {
+      to: (value: number) => value,
+      from: (value: string) => parseFloat(value),
+    },
   })
   companyRevenue: number;
 
