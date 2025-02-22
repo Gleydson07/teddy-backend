@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  postgres:
+    container_name: db-teddy-users
+    image: postgres:17.0
+    environment:
+      - POSTGRES_USER=${SQL_USER}
+      - POSTGRES_PASSWORD=${SQL_USER_PASSWORD}
+      - POSTGRES_DB=${SQL_DB}
+    ports:
+      - '${SQL_PORT}:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  external_net:
+    external: true
