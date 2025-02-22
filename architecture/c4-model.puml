@@ -1,0 +1,12 @@
+@startuml
+!include <C4/C4_Container>
+
+Person(user, "User", "User application")
+Container(frontend, "App Frontend", "ReactJS", "Frontend Application")
+Container(backend, "Backend", "NestJS | TypeORM", "Backend Service")
+Container(database, "Database", "Postgres", "Database Postgres")
+
+Rel(user, frontend, "User access application", "")
+Rel(frontend, backend, "Requests transactions", "")
+Rel(backend, database, "Data persistence", "")
+@enduml
