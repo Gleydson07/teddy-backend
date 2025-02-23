@@ -53,6 +53,7 @@ export class ClientsService {
         nextPage: pageParam < lastPage ? pageParam + 1 : null,
         firstPage: 1,
         lastPage,
+        totalItems: total,
       },
     };
   }
