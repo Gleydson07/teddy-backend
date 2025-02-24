@@ -9,5 +9,6 @@ export class ResponseFindClientsPaginatedDto {
     nextPage: number | null;
     lastPage: number | null;
     totalItems: number;
+    itemsPerPage: number;
   };
 }

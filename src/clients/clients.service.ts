@@ -32,6 +32,7 @@ export class ClientsService {
     const queryBuilder = this.clientsRepository
       .createQueryBuilder('clients')
       .take(itemsPerPage)
+      .orderBy('clients.id', 'DESC')
       .skip((page - 1) * itemsPerPage);
 
     if (typeof isSelected === 'boolean') {
@@ -50,9 +51,10 @@ export class ClientsService {
       pagination: {
         currentPage: pageParam,
         previousPage: pageParam > 1 && lastPage > 1 ? pageParam - 1 : null,
-        nextPage: pageParam < lastPage ? pageParam + 1 : null,
-        firstPage: 1,
-        lastPage,
+        nextPage: pageParam < lastPage - 1 ? pageParam + 1 : null,
+        firstPage: pageParam <= 2 ? null : 1,
+        lastPage: pageParam >= lastPage ? null : lastPage,
+        itemsPerPage: itemsPerPage,
         totalItems: total,
       },
     };
@@ -83,6 +85,20 @@ export class ClientsService {
     } catch (error) {
       console.error(error.message);
       throw new Error('Falha ao alterar status de seleção do cliente.');
+    }
+  }
+
+  async updateManyIsSelected(isSelected: boolean) {
+    try {
+      await this.clientsRepository.update(
+        { isSelected: !isSelected },
+        { isSelected },
+      );
+    } catch (error) {
+      console.error(error.message);
+      throw new Error(
+        'Falha ao alterar status de seleção de todos os cliente.',
+      );
     }
   }
 

@@ -62,6 +62,12 @@ export class ClientsController {
   }
 
   @HttpCode(204)
+  @Patch('selection')
+  updateManyIsSelected(@Body('isSelected') isSelected: boolean) {
+    return this.clientsService.updateManyIsSelected(isSelected);
+  }
+
+  @HttpCode(204)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.clientsService.remove(+id);
