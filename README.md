@@ -1,99 +1,121 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Executando aplicações
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Arquitetura
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Frontend em React + Vite para interface com o usuário.
 
-## Description
+Backend em NestJS para implementação de regras de negócio e comunicação com banco de dados.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Banco de dados PostgreSQL para persistência de dados.
 
-## Project setup
+TypeORM como ferramenta de Objeto-Relacional.
 
-```bash
-$ npm install
-```
+C4 (Contexto, Containers, Conmponentes e código) - Este modelo atende a camada 2.
 
-## Compile and run the project
+![c4-model.png](attachment:d0710810-9a8c-4bf6-94e3-2bbfbc22e489:c4-model.png)
+
+DER (Diagrama Entidade Relacional)
+
+![DER.png](attachment:f31ec273-19b2-4ae0-8dbd-375c500fe339:DER.png)
+
+Necessário apenas uma tabela para reepresentar a funcionalidade solicitada.
+
+### Executando as aplicações
+
+## Backend
+
+CRUD simples de persistencia de dados da entidade usuário em banco de dados PostgreSQL, utilizando TypeORM e NestJS.
+
+**Baixe a aplicação backend no repositório GIT com o comando:**
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+https://github.com/Gleydson07/teddy-backend.git
 ```
 
-## Run tests
+**Instale as dependências com o comando:**
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm install
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+**Copie o arquivo .env.example e cole com o nome .env apenas. No arquivo altere as variaveis de ambiente como preferir, para simplificar o processo, deixarei valores sugestivos.**
 
 ```bash
-$ npm install -g mau
-$ mau deploy
+APP_PORT=3000
+
+# DATABASE
+SQL_PORT=5432
+SQL_HOST="localhost"
+SQL_USER="master"
+SQL_USER_PASSWORD="MyP@ssw0rd"
+SQL_DB="teddy-users"
+SQL_SYNC=false
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+**Feito isso, execute o comando abaixo para que o container do banco de dados seja criado:**
 
-## Resources
+```bash
+docker compose up -d
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+Se o comando não funcionar, pode ser que sua versão esteja desatualizada, então execute o comando abaixo:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
+docker-compose up -d
+```
 
-## Support
+Se tudo der certo, você verá um resultado semelhante ao abaixo:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+![image.png](attachment:cba699f6-7e04-45f1-9d18-fdae1ab1ec6c:image.png)
 
-## Stay in touch
+**Execute o comando abaixo para iniciar a aplicação:**
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+npm run start:dev
+```
 
-## License
+O resultado deve ser semelhante a:
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+![image.png](attachment:5c78fd3d-00ee-4775-aab8-1f01eb37edb5:image.png)
+
+Para validar a conexão com a aplicação, utilize a collection abaixo com os endpoints já mapeados:
+
+[collection](attachment:00fcd02d-05d3-490f-84d2-0953799e543d:collection.txt)
+
+Recomendo baixa a ferramenta de testes de API’s [Insomnia](https://insomnia.rest/download) ou qualquer outra semelhante (Postman, Insomnium).
+
+## Frontend
+
+Aplicação criada em React + Vite
+
+**Baixe a aplicação frontend no repositório GIT com o comando:**
+
+```bash
+https://github.com/Gleydson07/teddy-frontend.git
+```
+
+**Instale as dependências com o comando:**
+
+```bash
+npm install
+```
+
+**Copie o arquivo .env.example e cole com o nome .env apenas. No arquivo altere as variaveis de ambiente como preferir, para simplificar o processo, deixarei valores sugestivos.**
+
+```bash
+VITE_APP_API_BASE_URL=http://localhost:3000
+```
+
+Obs.: A porta deve ser a mesma que estiver definida no APP_PORT do arquivo .env no backend.
+
+**Feito isso, basta executar o comando abaixo para iniciar a aplicação:**
+
+```bash
+npm run dev
+```
+
+Se der certo, você deve ver algo como:
+
+![image.png](attachment:4ff6c7a1-03ed-44b2-b9dc-f8faf460e196:image.png)
+
+Acesse a rota http://localhost:5173/
