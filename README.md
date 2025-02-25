@@ -12,11 +12,11 @@ TypeORM como ferramenta de Objeto-Relacional.
 
 C4 (Contexto, Containers, Conmponentes e código) - Este modelo atende a camada 2.
 
-![c4-model.png](attachment:d0710810-9a8c-4bf6-94e3-2bbfbc22e489:c4-model.png)
+![c4-model.png](architecture/c4-model.png)
 
 DER (Diagrama Entidade Relacional)
 
-![DER.png](attachment:f31ec273-19b2-4ae0-8dbd-375c500fe339:DER.png)
+![DER.png](architecture/DER.png)
 
 Necessário apenas uma tabela para reepresentar a funcionalidade solicitada.
 
@@ -66,7 +66,7 @@ docker-compose up -d
 
 Se tudo der certo, você verá um resultado semelhante ao abaixo:
 
-![image.png](attachment:cba699f6-7e04-45f1-9d18-fdae1ab1ec6c:image.png)
+![image.png](doc-files/img1.png)
 
 **Execute o comando abaixo para iniciar a aplicação:**
 
@@ -76,11 +76,11 @@ npm run start:dev
 
 O resultado deve ser semelhante a:
 
-![image.png](attachment:5c78fd3d-00ee-4775-aab8-1f01eb37edb5:image.png)
+![image.png](doc-files/img2.png)
 
 Para validar a conexão com a aplicação, utilize a collection abaixo com os endpoints já mapeados:
 
-[collection](attachment:00fcd02d-05d3-490f-84d2-0953799e543d:collection.txt)
+[collection](doc-files/collection)
 
 Recomendo baixa a ferramenta de testes de API’s [Insomnia](https://insomnia.rest/download) ou qualquer outra semelhante (Postman, Insomnium).
 
@@ -116,6 +116,6 @@ npm run dev
 
 Se der certo, você deve ver algo como:
 
-![image.png](attachment:4ff6c7a1-03ed-44b2-b9dc-f8faf460e196:image.png)
+![image.png](doc-files/img3.png)
 
 Acesse a rota http://localhost:5173/
